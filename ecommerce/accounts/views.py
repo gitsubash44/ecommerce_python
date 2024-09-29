@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from core.models import Customer
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
@@ -14,6 +15,7 @@ def user_login(request):
             login(request, user)
             return redirect('index')
         else:
+            messages.info(request,"Login failed ! Try again")
             # Optionally, add some error message here for failed login attempts
             print("Invalid credentials")
     
@@ -32,11 +34,11 @@ def user_register(request):
         if password == confirm_password:
             # Check if the username already exists
             if User.objects.filter(username=username).exists():
-                print("Username already exists!")
+                messages.info(request,"Username already exists!")
                 return redirect('user_register')
             # Check if the email already exists
             elif User.objects.filter(email=email).exists():
-                print("This email is already registered!")
+                messages.info(request,"This email is already registered!")
                 return redirect('user_register')
             else:
                 # Create the user
@@ -53,6 +55,7 @@ def user_register(request):
                     login(request, our_user)
                     return redirect('index')
         else:
+            messages.info(request,"Confirm_Password do not match!")
             print("Passwords do not match!")
             return redirect('user_register')
     

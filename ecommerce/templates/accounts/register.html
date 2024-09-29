@@ -21,6 +21,12 @@
             <div class="card-body p-5 m-2">
               <h2 class="text-uppercase text-center mb-3">Create an account</h2>
 
+              {% if messages %}
+                    {% for message in messages%} 
+                    <p class="fw-bold mb-6 text-uppercase text-center" style="color: red;">{{message}}</p>
+                    {% endfor %}
+                    {%endif%}
+
               <form method="post">
                 {% csrf_token %}
 
