@@ -38,7 +38,7 @@ def user_register(request):
                 return redirect('user_register')
             # Check if the email already exists
             elif User.objects.filter(email=email).exists():
-                messages.info(request,"This email is already registered!")
+                messages.info(request,"This email is already registered.!")
                 return redirect('user_register')
             else:
                 # Create the user
