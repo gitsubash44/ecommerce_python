@@ -4,7 +4,7 @@ from core.models import *
 class ProductForm(forms.ModelForm):
     
     class Meta:
-        model = 'Product'
+        model = Product
         fields = '__all__'
         
         
