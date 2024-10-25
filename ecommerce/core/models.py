@@ -25,7 +25,8 @@ class Product(models.Model):
     desc = models.TextField()
     price = models.FloatField(default=0.0)
     product_available_count = models.IntegerField(default=0)
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
+
     
     def get_add_to_cart_url(self):
         return reversed("core:add_to_cart",kwargs={
