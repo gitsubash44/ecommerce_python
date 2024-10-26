@@ -1,8 +1,7 @@
 from django.shortcuts import redirect, render
-from core.forms import *
+from core.forms import ProductForm
 from django.contrib import messages
 from core.models import *
-
 # Create your views here.
 def index(request):
     products = Product.objects.all()

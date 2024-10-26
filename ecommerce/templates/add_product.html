@@ -28,30 +28,30 @@
                         {% endfor %}
                     {% endif %}
                 
-                    <form method="post">
-                        {% csrf_token %}
-                        
-                        <!-- Render hidden fields (if any) -->
-                        {% for hidden_field in form.hidden_fields %}
-                            {{ hidden_field }}
-                        {% endfor %}
-              
-                        <!-- Render visible fields with Bootstrap classes -->
-                        {% for field in form.visible_fields %}
-                            <div class="form-group mb-3">
-                                {{ field.label_tag }}
-                                {{ field|add_class:"form-control" }}
-                                {% if field.help_text %}
-                                    <small class="form-text text-muted">{{ field.help_text }}</small>
-                                {% endif %}
-                            </div>
-                        {% endfor %}
-      
-                        <!-- Submit Button -->
-                        <div class="d-flex justify-content-center">
-                            <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-white">Submit</button>
-                        </div>
-                    </form>
+                    <form method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <!-- Render hidden fields (if any) -->
+                      {% for hidden_field in form.hidden_fields %}
+                          {{ hidden_field }}
+                      {% endfor %}
+                    
+                      <!-- Render visible fields with Bootstrap classes -->
+                      {% for field in form.visible_fields %}
+                          <div class="form-group mb-3">
+                              {{ field.label_tag }}
+                              {{ field|add_class:"form-control" }}
+                              {% if field.help_text %}
+                                  <small class="form-text text-muted">{{ field.help_text }}</small>
+                              {% endif %}
+                          </div>
+                      {% endfor %}
+                    
+                      <!-- Submit Button -->
+                      <div class="d-flex justify-content-center">
+                          <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-white">Submit</button>
+                      </div>
+                  </form>
+                  
                   </div>
                 </div>
               </div>

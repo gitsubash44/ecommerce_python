@@ -142,20 +142,20 @@
 
           <div class="container">
           <div class=" row row-cols-1 row-cols-md-3 g-4">
-
+            {% for product in products %}
             <div class="col">
               <div class="card">
                 <img 
-                  src=""
+                  src="{{product.img.url}}"
                   class="card-img-top"
                   alt="..."
                   />
                 <div class="card-body">
-                  <h4 class="card-title">Name</h4>
+                  <h4 class="card-title">{{product.name}}</h4>
                 </div>
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><b>Category</b>: Category</li>
-                  <li class="list-group-item"><b>Price</b>   : Price</li>
+                  <li class="list-group-item"><b>Category</b>: {{product.category.category_name}}</li>
+                  <li class="list-group-item"><b>Price</b>   : {{product.price}}</li>
                 </ul>
 
                 <div class="card-footer" style="background-color: white;">
@@ -163,6 +163,8 @@
                 </div>
               </div><!-- End Icon Box -->
             </div>
+          {% endfor %}
+
           </div><!-- End Icon Box -->
         </div>
       </div><!-- End Icon Box -->
@@ -680,6 +682,8 @@
 
   <!-- Main JS File -->
   <script src="{% static 'js/main.js'%}"></script>
+
+  </main>
 
 </body>
 
