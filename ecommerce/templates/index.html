@@ -146,12 +146,14 @@
             <div class="col">
               <div class="card">
                 <img 
-                  src="{{product.img.url}}"
+                  src="{{product.image.url}}"
                   class="card-img-top"
-                  alt="..."
-                  />
+                  alt="Product Image"
+                  style="width: 413px; height: 250px; object-fit: cover;"
+                />
+              
                 <div class="card-body">
-                  <h4 class="card-title">{{product.name}}</h4>
+                  <h3 class="card-title">{{product.name}}</h3>
                 </div>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item"><b>Category</b>: {{product.category.category_name}}</li>
@@ -159,7 +161,7 @@
                 </ul>
 
                 <div class="card-footer" style="background-color: white;">
-                  <a href="" class="btn btn-dark">View More</a>
+                  <a href="{% url 'product_desc' product.pk %}" class="btn btn-dark">View More</a>
                 </div>
               </div><!-- End Icon Box -->
             </div>

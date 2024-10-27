@@ -20,3 +20,9 @@ def add_product(request):
     else:
         form = ProductForm()
     return render(request, 'add_product.html', {'form': form})
+
+
+def product_desc(request,pk):
+    product = Product.objects.get(pk=pk)
+    return render(request,'product_desc.html',{'product':product})
+    
