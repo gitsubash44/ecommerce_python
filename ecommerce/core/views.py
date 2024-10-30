@@ -26,3 +26,9 @@ def product_desc(request,pk):
     product = Product.objects.get(pk=pk)
     return render(request,'product_desc.html',{'product':product})
     
+
+
+def add_to_cart(request,pk):
+    # get that particular product of id = pk
+    product = Product.objects.get(pk=pk)
+    
