@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from core.forms import ProductForm
 from django.contrib import messages
 from core.models import *
+from django.utils import timezone
 # Create your views here.
 def index(request):
     products = Product.objects.all()
@@ -31,4 +32,29 @@ def product_desc(request,pk):
 def add_to_cart(request,pk):
     # get that particular product of id = pk
     product = Product.objects.get(pk=pk)
+    # create order item 
+    order_item, created  = OrderItem.objects.get_or_create(
+        product = product,
+        user = request.user,
+        ordered = False,
+    )
     
+    # Get query set of order object of particular user
+    order_qs = Order.objects.filter(user=request.user,ordered=False)
+    if order_qs.exists(): 
+        order = order_qs[0]
+        if order.items.filter(product__pk = pk).exists():
+            order_item.quantity +=1
+            order_item.save()
+            messages.info(request, "Added quantity Item. ")
+            return redirect("product_desc",pk=pk)
+        else:
+            order_item.add(order_item,)
+            messages.info(request,"Item added to cart")   
+            return redirect("product_desc",pk=pk)
+    else:
+        ordered_date = timezone.now()
+        order = Order.objects.create(user=request.user,ordered_date = ordered_date)
+        order.items.add(order_item)
+        messages.info(request,"Item Added To Cart")
+        return  redirect("product_desc",pk=pk) 

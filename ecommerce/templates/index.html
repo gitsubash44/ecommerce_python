@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load cart_template %}
 <html lang="en">
 
 <head>
@@ -47,6 +48,7 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="#hero">Home</a></li>
+          <li><a href="#">Cart&nbsp;&nbsp; <div style="color: red;">{{request.user | cart_item_count }}</div></a></li>
           <li><a href="{% url 'add_product' %}">Add Product</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>

@@ -98,7 +98,7 @@
                             </div>
                             <p class="about">{{product.desc}}</p>
                            
-                            <div class="cart mt-5 align-items-center"><a href=""> <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button> <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i> </a> </div>
+                            <div class="cart mt-5 align-items-center"><a href="{% url 'add_to_cart' product.pk %}"> <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button> <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i> </a> </div>
                         </div>
                     </div>
                 </div>
