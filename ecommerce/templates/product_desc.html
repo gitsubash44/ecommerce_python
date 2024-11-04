@@ -52,7 +52,7 @@
         <ul>
           {% if user.is_authenticated %}
             <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="#">Cart&nbsp;&nbsp;<span style="color: red;">{{ request.user|cart_item_count }}</span></a></li>
+            <li><a href="{% url 'orderlist' %}">Cart&nbsp;&nbsp;<span style="color: red;">{{ request.user|cart_item_count }}</span></a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#contact">Contact</a></li>
