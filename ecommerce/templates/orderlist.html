@@ -114,26 +114,46 @@
               </tr>
             </thead>
             <tbody>
-              {% for order_item in order_items.all %}
+              {% for order_item in order.items.all %}
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{order_item.product.name}}</td>
+                <td>{{order_item.product.price}}</td>
+                <td>
+                  <a href="">+</a> &nbsp;
+                  {{order_item.Quantity}} &nbsp;
+                  <a href="">-</a>
+                </td>
+                <td>Rs. {{order_item.get_total_item_price}}</td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
+              {% empty %}
+              <tr class="row body">
+                <td class="cell100 column1">Your Cart is Empty</td>
+                <td colspan="cell100 column1">
+                  <a href="{% url 'index' %}" class="btn btn-primary float-right">Continue Shopping</a>
+                </td>
               </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
+              {% endfor %}
+
+              {% if order.get_total_price %}
+              <tr class="row100 body" style="background-color: #191919;">
+                <td class="cell100 column1" style="color: white;"><b>Total order Price</b></td>
+                <td class="cell100 column2"></td>
+                <td class="cell100 column3"></td>
+                <td class="cell100 column4"></td>
+                <td class="cell100 column5" style="color: white;"><i class="fas fa-rupee-sign"></i>Rs. {{ order.get_total_item_price}}</td>
                 <td>the Bird</td>
                 <td>@twitter</td>
               </tr>
+
+              <tr class="row100 body">
+                <td class="call100 column1">
+                  <a href="" class="btn btn-warning float-right ml-2"> Checkout</a>
+                  <a href="" class="btn btn-primary float-right">Continue Shopping</a>
+
+                </td>
+              </tr>
+              {% endif %}
             </tbody>
           </table>
           
