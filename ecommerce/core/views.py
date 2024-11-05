@@ -3,6 +3,7 @@ from core.forms import ProductForm
 from django.contrib import messages
 from core.models import *
 from django.utils import timezone
+from django.shortcuts import get_object_or_404
 # Create your views here.
 def index(request):
     products = Product.objects.all()
@@ -90,6 +91,7 @@ def add_item(request,pk):
                 return redirect("orderlist")
             else:
                 messages.info(request,"Sorry!, Product is out of stock")
+                return redirect("orderlist")
         else:
             order_item.add(order_item,)
             messages.info(request,"Item added to cart")   
@@ -100,3 +102,19 @@ def add_item(request,pk):
         order.items.add(order_item)
         messages.info(request,"Item Added To Cart")
         return  redirect("product_desc",pk=pk) 
+    
+    
+def remove_item(request):
+    item = get_object_or_404(Product,pk=pk)
+    order_qs = Order.objects.filter(
+        user = request.user,
+        ordered = False,
+    )
+    if order_qs.exists():
+        order = order_qs[0]
+        if order.items.filter(Product__pk=pk).exists():
+            order_item = OrderItem.objects.filter(
+                product = item,
+                user = request.user,
+                ordered = False,
+            )
