@@ -117,4 +117,18 @@ def remove_item(request):
                 product = item,
                 user = request.user,
                 ordered = False,
-            )
+            )[0]
+            if order_item.quantity > 1:
+                order_item.quantity -= 1
+                order_item.save()
+            else:
+                order_item.delete()
+                messages.info(request,"Item quantity was update")
+            return redirect("orderlist")
+        else:
+            messages.info(request,"This item is not in your cart")
+            return redirect("orderlist")
+        
+    else:
+        messages.info(request,"You do not have not orders")
+        return redirect("orderlist")
