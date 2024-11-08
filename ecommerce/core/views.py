@@ -104,7 +104,7 @@ def add_item(request,pk):
         return  redirect("product_desc",pk=pk) 
     
     
-def remove_item(request):
+def remove_item(request,pk):
     item = get_object_or_404(Product,pk=pk)
     order_qs = Order.objects.filter(
         user = request.user,
